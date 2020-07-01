@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   # Все запросы GET на страницу About отправляем в контроллер pages и обрабатываем методом about
   get 'about', to: 'pages#about'
+
 end
