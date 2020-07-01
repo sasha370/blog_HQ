@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   # в даннои случае базовый контроллер, у которого должен быть метод HELLO
   root 'pages#home'
 
+  # Все запросы GET на страницу About отправляем в контроллер pages и обрабатываем методом about
+  get 'about', to: 'pages#about'
 end
