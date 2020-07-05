@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # переадресуем запрос на создание User на страницу с названием signup
   get 'signup', to: 'users#new'
+
   resources :users, except: [:new]
 
 

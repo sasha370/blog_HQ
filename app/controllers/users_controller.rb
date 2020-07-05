@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
 
+
+
+  def index
+    @users = User.all
+  end
+
+
   def new
     @user = User.new
   end
@@ -15,6 +22,9 @@ class UsersController < ApplicationController
     # Данная переменная нужна, чтобы отображать Все статьи одного ползователя
     @articles = @user.articles
   end
+
+
+
 
   def update
 
