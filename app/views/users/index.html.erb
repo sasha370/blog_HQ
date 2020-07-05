@@ -19,7 +19,11 @@
             </h5>
             <p class="card-text"><%= user.articles.count %> статей</p>
             <%= link_to 'Show', user, class: "btn btn-outline-success" %>
+
+            <% if logged_in? && user == current_user %>
             <%= link_to 'Edit', edit_user_path(user), class: "btn btn-outline-info" %>
+
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Зарегистрирован <%= time_ago_in_words(user.created_at) %>,
