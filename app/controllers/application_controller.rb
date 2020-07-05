@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def require_user
+    if !logged_in?
+      flash[:alert] = " Необходимо войти чтобы сделать это"
+      redirect_to login_path
+    end
+  end
+
 end
