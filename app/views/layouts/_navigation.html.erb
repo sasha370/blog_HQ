@@ -47,6 +47,8 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Личный кабинет", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Изменить данные", edit_user_path(current_user), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Удалить профиль", user_path(current_user), method: :delete,  class: " dropdown-item text-danger",data: { confirm: "Вы точно хотите удалить свой профиль и все статьи?" }%>
               </li>
 
         <li class="nav-item">
