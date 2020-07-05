@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   # Создать переменную в которой лежат все записи из таблицы
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: :desc)
   end
 
   # GET /articles/1
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def create
     # Создаем новую переменную, в которую записываем разрешенные данные
     @article = Article.new(article_params)
-
+    @article.user = User.first
 
     respond_to do |format|
       # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice
