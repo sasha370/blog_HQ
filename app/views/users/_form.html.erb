@@ -29,7 +29,7 @@
 
 
         <div class="form-group row justify-content-center">
-          <%= form.submit "Создать пользователя", class: "btn btn-outline-light btn-lg" %>
+          <%= form.submit(@user.new_record? ? "Создать пользователя" : "Сохранить", class: "btn btn-outline-light btn-lg") %>
         </div>
       <% end %>
     </div>
