@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   resources :articles # прописываем все возможные пути для Articles по CRUD
 
+  # переадресуем запрос на создание User на страницу с названием signup
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
+
+
 end
