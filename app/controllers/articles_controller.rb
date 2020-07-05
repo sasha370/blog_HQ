@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
   def create
     # Создаем новую переменную, в которую записываем разрешенные данные
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
 
     respond_to do |format|
       # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice

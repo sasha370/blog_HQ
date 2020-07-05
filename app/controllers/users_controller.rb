@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to user_path(@user), notice: "Пользователь #{@user.username} успешно создан" }
         format.json { render :show, status: :created, location: @user }
       else
