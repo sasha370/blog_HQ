@@ -6,12 +6,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    
+
   end
 
   def show
     @user = User.find(params[:id])
 
+    # Данная переменная нужна, чтобы отображать Все статьи одного ползователя
+    @articles = @user.articles
   end
 
   def update

@@ -11,3 +11,5 @@ class User < ApplicationRecord
   # Данная строчка подкючает шифрование к данной модели. Для работы надо GEM Bycript
   has_secure_password
 end
+
+
