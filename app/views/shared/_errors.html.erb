@@ -2,8 +2,7 @@
   <div class="alert alert-danger alert-warning alert-dismissible fade show" role="alert">
 
 
-    <h4 class="alert-heading"><%= pluralize(obj.errors.count, "error") %> prohibited this article from being
-      saved:</h4>
+    <h4 class="alert-heading">Выявленно <%= pluralize(obj.errors.count, "error") %>, из-за которых мы не можем сохранить <%= obj.class.name.downcase %> :</h4>
     <ul>
       <% obj.errors.full_messages.each do |message| %>
         <li><%= message %></li>

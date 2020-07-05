@@ -16,7 +16,7 @@
         <div class="form-group row">
           <%= form.label :email, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
-            <%= form.email_field :email, class: "form-control shadow rounded", placeholder: "E-mail" %>
+            <%= form.text_field :email, class: "form-control shadow rounded", placeholder: "E-mail" %>
           </div>
         </div>
 
@@ -29,7 +29,7 @@
 
 
         <div class="form-group row justify-content-center">
-          <%= form.submit class: "btn btn-outline-light btn-lg" %>
+          <%= form.submit "Создать пользователя", class: "btn btn-outline-light btn-lg" %>
         </div>
       <% end %>
     </div>
