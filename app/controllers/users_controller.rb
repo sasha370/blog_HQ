@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update]
 
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
 
@@ -12,23 +12,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-
   end
 
   def show
-    @user = User.find(params[:id])
-
     # Данная переменная нужна, чтобы отображать Все статьи одного ползователя
-    @articles = @user.articles
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
 
 
-
-
   def update
-
-    @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update(user_params)
@@ -48,7 +40,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice
       if @user.save
-        format.html { redirect_to articles_path, notice: "Пользователь #{@user.username} успешно создан" }
+        format.html { redirect_to user_path(@user), notice: "Пользователь #{@user.username} успешно создан" }
         format.json { render :show, status: :created, location: @user }
       else
         # если сохранение неудачно, то открываем шаблон NEW ? который подсасывает форму, в которой есть Errors
@@ -60,6 +52,10 @@ class UsersController < ApplicationController
 
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:username, :email, :password)

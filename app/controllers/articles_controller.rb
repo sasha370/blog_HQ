@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   # Создать переменную в которой лежат все записи из таблицы
   def index
-    @articles = Article.all.order(created_at: :desc)
+    @articles = Article.paginate(page: params[:page], per_page: 5)
+    # @articles = Article.all.order(created_at: :desc)
   end
 
   # GET /articles/1
