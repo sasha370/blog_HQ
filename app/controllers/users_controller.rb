@@ -54,11 +54,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil
-    flash[:notice] = "Профиль и все ваши статьи успешно удален"
+    session[:user_id] = nil if @user == current_user
+    flash[:notice] = "Пользователь и все его статьи успешно удалены"
     redirect_to articles_path
   end
-
 
 
   private
@@ -72,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
+    if current_user != @user && !current_user.admin?
       flash[:alert] = " Вы можете редактировать только свой профиль"
       redirect_to @user
     end
