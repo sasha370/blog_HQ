@@ -14,12 +14,26 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      flash[:notice] = "Категория успешно создана"
-      redirect_to @category
-    else
-      render 'new'
+
+    respond_to do |format|
+      # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice
+      if @category.save
+        format.html { redirect_to @category, notice: "Категория успешно создана" }
+        format.json { render :show, status: :created, location: @category }
+      else
+        # если сохранение неудачно, то открываем шаблон NEW ? который подсасывает форму, в которой есть Errors
+        format.html { render :new }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
+
+
+    # if @category.save
+    #   flash[:notice] = "Категория успешно создана"
+    #   redirect_to @category
+    # else
+    #   render 'new'
+    # end
   end
 
   private
