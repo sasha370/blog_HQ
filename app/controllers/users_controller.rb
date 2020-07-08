@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     # Данная переменная нужна, чтобы отображать Все статьи одного ползователя
-    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    @articles = @user.articles.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
 
