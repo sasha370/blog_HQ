@@ -6,19 +6,22 @@
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
 
-          <% if @article.user %>
-            Автор:  <%= link_to @article.user.username, user_path(@article.user) %>
-            <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+          <%# if @article.user %>
+          Автор:  <%= link_to @article.user.username, user_path(@article.user) %>
+          <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+          <% if @article.categories.any? %>
+           <div class="mt-2">
+             <%= render @article.categories %>
+           </div>
           <% end %>
+          <%# end %>
         </div>
         <div class="card-body">
-
           <div class="card-text text-left"><%= simple_format(@article.description) %></div>
-
-<% if logged_in? && (@article.user == current_user || current_user.admin? ) %>
-          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info" %>
-          <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Вы уверенны?' }, class: "btn btn-outline-danger" %>
-<% end %>
+          <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+            <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info" %>
+            <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Вы уверенны?' }, class: "btn btn-outline-danger" %>
+          <% end %>
         </div>
         <div class="card-footer text-muted">
           <small>Создано <%= time_ago_in_words(@article.created_at) %>,
