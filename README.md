@@ -8,3 +8,7 @@
 6) User permission VS  Admin permission - разграничение прав пользователей и админа
 7) Категоризация статей/теги
 8) Deploy on Heroku
+
+Админ 
+budka52@bk.ru   
+123456
