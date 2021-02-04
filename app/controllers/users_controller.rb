@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @users = User.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
-
   def new
     @user = User.new
   end
@@ -16,13 +15,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    # Данная переменная нужна, чтобы отображать Все статьи одного ползователя
     @articles = @user.articles.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
-
   def update
-
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'Изменения созранены' }
@@ -37,15 +33,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
-      # Если сохранение удачно, то перенаправляем на шаблон show, в котором есть место для notice
       if @user.save
         session[:user_id] = @user.id
         format.html { redirect_to user_path(@user), notice: "Пользователь #{@user.username} успешно создан" }
         format.json { render :show, status: :created, location: @user }
       else
-        # если сохранение неудачно, то открываем шаблон NEW ? который подсасывает форму, в которой есть Errors
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -58,7 +51,6 @@ class UsersController < ApplicationController
     flash[:notice] = "Пользователь и все его статьи успешно удалены"
     redirect_to articles_path
   end
-
 
   private
 
@@ -76,6 +68,4 @@ class UsersController < ApplicationController
       redirect_to @user
     end
   end
-
-
 end
