@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
-
   def new
     @category = Category.new
   end
@@ -47,14 +46,6 @@ class CategoriesController < ApplicationController
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
-
-
-    # if @category.save
-    #   flash[:notice] = "Категория успешно создана"
-    #   redirect_to @category
-    # else
-    #   render 'new'
-    # end
   end
 
   private
@@ -69,5 +60,4 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     end
   end
-
 end
